@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Log</title>
+</head>
+<body>
+  <p onClick="makeGreen()"> Turn Green</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+    const p = document.querySelector('p');
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+
+    console.log('hello');
+
+    // Interpolated
+    console.log(`hello green ${p}`);
+    // Styled
+    console.log('%c Hello Green', 'color: #BADA55; font-size: 30px; background: red;');
+
+    // warning!
+    console.warn("look at me, it's green");
+
+    // Error :|
+    console.error("It's red");
+
+    // Info
+    console.info('color code #BADA55');
+    // Testing
+
+    console.assert(p.classList.contains('#BADA55'), 'that is wrong');
+
+    // clearing
+    console.clear();
+
+    // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
+
+    console.clear();
+    // Grouping together
+
+    dogs.forEach(dog => {
+      console.log(`Name of the dog ${dog.name}`);
+      console.log(`It's ${dog.age} years old`);
+    })
+
+    // counting
+    console.count('wes');
+    console.count('east');
+    console.count('wes');
+    console.count('east');
+    console.count('east');
+
+    // timing
+
+  </script>
+</body>
+</html>
