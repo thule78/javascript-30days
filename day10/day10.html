@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>shift multi check boxes</title>
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+  <div class="inbox">
+    <div class="item">
+      <input type="checkbox">
+      <p>Email Leigh</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Hiring Virtual Assitant</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Check content Micheal-1985</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Prepare for Malaysia country general information</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Give Work for Virtual Assitant</p>
+    </div>
+  </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+    let lastChecked;
+    function handleCheck(e){
+      let inBetween = false;
+      //check if they hold shift key
+      //and check if they checking it
+      if (e.shiftKey && this.checked) {
+        // go do what we want to do
+        // loop over inBetween checkboxes
+        checkboxes.forEach(checkbox => {
+          console.log(checkbox);
+          if (checkbox === this || checkbox === lastChecked) {
+            inBetween = !inBetween;
+            console.log('started check inBetween');
+          }
+          if (inBetween) {
+            checkbox.checked = true;
+          }
+        });
+
+      }
+     lastChecked = this;
+    }
+
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck ))
+  </script>
+</body>
+</html>
