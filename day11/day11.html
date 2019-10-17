@@ -7,18 +7,18 @@
 </head>
 <body>
   <script>
-    const pressed = [];
-    const secretKey = 'thule';
-    window.addEventListener('keyup', (e) => {
-      pressed.push(e.key);
-      pressed.splice(-secretKey.length -1 , pressed.length - secretKey.length);
+    const keyList = [];
+    const motherKeys = 'lunthu';
+    window.addEventListener('keyup', (e)=> {
+      keyList.push(e.key);
+      keyList.splice(-motherKeys.length -1, keyList.length - motherKeys.length);
 
-      if(pressed.join('').includes(secretKey)) {
-        console.log('here we go');
+      if(keyList.join('').includes(motherKeys)) {
+        console.log('here they are');
         cornify_add();
       }
-      console.log(pressed);
-    });
+      console.log(keyList);
+    })
   </script>
 </body>
 </html>
