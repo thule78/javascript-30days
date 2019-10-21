@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Make copy of array and objet that doesn't effect the original array and object</title>
+</head>
+<body>
+<script>
+    // start with strings, numbers and booleans
+    // let age = 99;
+    // let age2 = age;
+    // console.log(age, age2);
+    // age = 199;
+    // console.log(age, age2);
+   //  let name = "thu";
+   //  let name1 = name ;
+   //  console.log(name, name1);
+   // name = "thule";
+   //  console.log(name, name1);
+
+    // Let's say we have an array
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+
+    // one way copy an array
+    // let team1 = players.slice();
+    // team1[2] = "lun";
+    // console.log(players, team1);
+
+    // or create a new array with concat the old one in
+    // let team2 = [].concat(players);
+    // team2[3] = "Thu";
+    // console.log(players, team2);
+
+    // or use the new ES6 Spread
+    // let team3 = [...players];
+    // team3[2] = "lunthu";
+    // console.log(players, team3);
+
+    // now when we update it, the original one isn't changed
+
+    // The same thing goes for objects, let's say we have a person object
+
+    // with Objects
+    const person = {
+      name: 'Wes Bos',
+      age: 80
+    };
+
+    // and think we make a copy:
+
+    // how do we take a copy instead?
+
+    // We will hopefully soon see the object ...spread
+    let cap = {...person};
+    cap.number = 90;
+    cap.age = 30
+    cap.name = "thu"
+    console.log(person, cap);
+
+    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+</script>
+</body>
+</html>

@@ -7,18 +7,19 @@
 </head>
 <body>
   <script>
-    const keyList = [];
-    const motherKeys = 'lunthu';
-    window.addEventListener('keyup', (e)=> {
-      keyList.push(e.key);
-      keyList.splice(-motherKeys.length -1, keyList.length - motherKeys.length);
+const pressed = [];
+const secretCode = 'wesbos';
 
-      if(keyList.join('').includes(motherKeys)) {
-        console.log('here they are');
-        cornify_add();
-      }
-      console.log(keyList);
-    })
-  </script>
+window.addEventListener('keyup', (e) => {
+  console.log(e.key);
+  pressed.push(e.key);
+  pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+  if (pressed.join('').includes(secretCode)) {
+    console.log('DING DING!');
+    cornify_add();
+  }
+  console.log(pressed);
+});
+</script>
 </body>
 </html>
