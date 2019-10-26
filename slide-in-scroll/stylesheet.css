@@ -1,0 +1,38 @@
+html {
+  box-sizing: border-box;
+  background: #ffc600;
+  font-family: 'helvetica neue';
+  font-size: 20px;
+  font-weight: 200;
+}
+
+body {
+  margin: 0;
+
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+ h1, h2, h3 {
+  margin-top: 0;
+ }
+
+ .site-wrap {
+  max-width: 700px;
+  margin: 100px auto;
+  background: 40px;
+  padding: 40px;
+  text-align: justify;
+ }
+
+ .slide-in {
+  opacity: 0;
+  transform: translateX(-100%) scale(0.95);
+  transition: all 0.5s;
+ }
+
+ .slide-in.active {
+  opacity: 1;
+  transform: translateX(0%) scale(1);
+ }
