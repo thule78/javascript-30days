@@ -1,0 +1,69 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *before, *after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper {
+  width: 400px;
+  border: solid 3px black;
+  background-color: black;
+  color: white;
+}
+.calc-buttons-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: 0.5%;
+}
+
+.cacl-button {
+  background-color: #d8d9db;
+  color: black;
+  border: none;
+  font-size: 40px;
+  text-align: center;
+  height: 100px;
+  flex-basis: 24.5%;
+}
+
+.cacl-button:hover {
+  background-color: #ebebeb;
+}
+
+.cacl-button:active {
+  background-color: #bbbcbe;
+}
+
+.cacl-button:last-child{
+  background-color: #df974c;
+}
+
+.cacl-button:last-child:hover {
+  background-color: #dfb07e;
+}
+
+.cacl-button:last-child:active {
+  background-color: #dd8d37;
+}
+
+.double {
+  flex-basis: 49.7%;
+}
+
+.triple {
+  flex-basis: 74.9%;
+}
+.screen {
+  text-align: right;
+  font-family: monospace, "Courier New", Courier;
+  padding: 20px 5px;
+  font-size: 40px;
+}
