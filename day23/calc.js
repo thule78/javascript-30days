@@ -1,6 +1,6 @@
 let runningTotal = 0;
 let buffer = "0";
-let previousOperator;
+let previousOperator = null;
 
 const screen = document.querySelector('.screen');
 
@@ -12,20 +12,7 @@ function buttonClick() {
   screen.innerText = buffer;
 };
 
-function handleSymbol(symbol) {
-  console.log(symbol);
-  if(symbol === "C") {
-    buffer = "0";
-    runningTotal = 0;
-  } else {
-    handleMath(symbol);
-  }
-
-};
-
 function handleMath(symbol) {
-  console.log("hello math");
-
   if(buffer === "0") {
     return;
   }
@@ -33,27 +20,54 @@ function handleMath(symbol) {
   const intBuffer = parseInt(buffer);
 
   if(runningTotal === 0) {
-    console.log('hello mess');
-    previousOperator = symbol;
-    buffer = 0;
     runningTotal = intBuffer;
   } else {
-
-
-
-    if(previousOperator === "+") {
-      runningTotal += intBuffer;
-    } else if (previousOperator === "−") {
-      runningTotal -= intBuffer;
-    }else if (previousOperator === "×") {
-      runningTotal *= intBuffer;
-    }else {
-      runningTotal /= intBuffer;
-    }
+    flushOperation(intBuffer);
   }
+  previousOperator = symbol;
+  buffer = "0" ;
 
 };
 
+function flushOperation(intBuffer){
+  if(previousOperator === '+') {
+    runningTotal += intBuffer;
+  } else if (previousOperator === '−') {
+    runningTotal -= intBuffer;
+  } else if (previousOperator === '×') {
+    runningTotal *= intBuffer;
+  } else {
+    runningTotal /= intBuffer;
+  }
+  console.log(runningTotal);
+}
+
+function handleSymbol(symbol) {
+  console.log(symbol);
+  if(symbol === "C") {
+    buffer = "0";
+    runningTotal = 0;
+  } else if (symbol === "=") {
+    if(previousOperator === null) {
+      return;
+    } else {
+      flushOperation(parseInt(buffer));
+      previousOperator = null;
+      buffer = runningTotal;
+      runningTotal = 0 ;
+    }
+  } else if(symbol === '←') {
+    if(buffer.length === 1) {
+      buffer = "0";
+    }else {
+      buffer = buffer.substring(0, buffer.length -1);
+    }
+  }
+   else {
+    handleMath(symbol);
+  }
+
+};
 
 function handleNumber(numberString) {
   if(buffer === "0") {
@@ -61,6 +75,7 @@ function handleNumber(numberString) {
   } else {
     buffer += numberString;
   }
+  console.log(buffer);
 };
 
 calcButtons.forEach(calcButton => calcButton.addEventListener('click', buttonClick))
