@@ -48,3 +48,19 @@ liTwo.insertAdjacentElement('beforebegin', liOne);
 liThree.insertAdjacentElement('afterend',liFour);
 liFour.insertAdjacentElement('afterend', liFive);
 
+//turn a string to DOM element//
+const width = 500 ;
+const src = `https://picsum.photos/${width}`;
+const desc = "string to DOM";
+const myHTML = `
+<div class="content">
+  <h2>Hello ${desc}</h2>
+  <img src="${src}" />
+
+</div>
+`;
+
+const myFragment = document.createRange().createContextualFragment(myHTML);
+
+myDiv.appendChild(myFragment);
+
