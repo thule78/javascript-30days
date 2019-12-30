@@ -1,0 +1,75 @@
+input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  appearance: none;
+  position: fixed;
+}
+
+label {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  width: 15px;
+  height: 10px;
+  margin: 40px;
+  color: hotpink;
+}
+
+label span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  transition: transform 1s;
+}
+
+label span::before, label span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: block;
+  height: 2px;
+  background: hotpink;
+  transition: 0.4s;
+}
+
+label span::before {
+  top: 0;
+}
+
+label span::after {
+  top: calc(100% - 2px);
+}
+
+ul {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateX(100vw);
+  transition: transform 0.2s;
+  background: white;
+}
+
+input:checked + label span {
+  transform: rotate(45deg);
+}
+
+input:checked + label span::before, input:checked + label span ::after {
+  top: calc(50% - 1px);
+  transition: 0.4s;
+}
+
+input:checked + label span::after {
+  transform: rotate(90deg);
+}
+
+input:checked ~ ul {
+  transform: none;
+  transition: transform 0.4s;
+}
