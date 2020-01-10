@@ -5,18 +5,19 @@ const ctx = canvas.getContext('2d');
 
 const shakeBtn = document.querySelector('.shake');
 
-// setup our canvas for drawing
+
 // make a variable called height and width from the same properties on our canvas
 const { width, height } = canvas;
-console.log(width, height);
 const MOVE_AMOUNT = 10;
 
+// create random x and y starting points on the canvas
 let x = Math.floor(Math.random()* width);
 let y = Math.floor(Math.random()* height);
+// set hue
 let hue = 0;
 
-// create random x and y starting points on the canvas
-ctx.strokeStyle = `hsl(#{Math.random()*360}, 100%, 50%)`
+// setup our canvas for drawing
+ctx.strokeStyle = `hsl(#{Math.random()* 360}, 100%, 50%)`
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
 ctx.lineWidth = 30;
