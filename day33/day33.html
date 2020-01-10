@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>tab</title>
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="tabs">
+      <div role="tablist" aria-label="programming language">
+        <button role="tab" aria-selected="true" id="js">Javascript</button>
+        <button role="tab" aria-selected="false" id="react">React</button>
+        <button role="tab" aria-selected="false" id="ruby">Ruby</button>
+
+      </div>
+      <div role="tabpanel" aria-labelledby="js">
+        <p>Javascript is the must know</p>
+      </div>
+      <div role="tabpanel" aria-labelledby="react" hidden>
+        <p>React is shouls learn frame work for SPA</p>
+      </div>
+      <div role="tabpanel" aria-labelledby="ruby" hidden>
+        <p>Ruby for back-end, that build app fast</p>
+      </div>
+    </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>
