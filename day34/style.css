@@ -1,0 +1,23 @@
+.tabs {
+  display: grid;
+}
+
+
+
+[role="tabpanel"] {
+  background: yellow;
+  padding: 2rem;
+}
+
+button {
+  background: grey;
+  border: 0;
+  color: black;
+  border-radius: 5px, 5px, 0, 0;
+  cursor: pointer;
+  padding: 10px;
+}
+
+button[aria-selected="true"] {
+  background: yellow;
+}
