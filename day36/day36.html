@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Timeout | Interval</title>
+</head>
+<body>
+
+</body>
+<script>
+  function buzzerr() {
+    console.log('Ergggggg');
+  }
+
+  //console.log('start');
+  //setTimeout(buzzerr, 500);//call one time
+  //console.log('end');
+  // run start, end and call back to buzzerr when time comes.
+  //setInterval(buzzerr, 5000);//call in every 500 milisecond
+
+  // how stop the timer
+  // case 1 if in the amount of time people don't do anything something will happen
+
+  function warningText() {
+    console.log('Disappear coz you do nothing');
+  }
+
+  const bombTimer = setTimeout(warningText, 5000);
+
+  window.addEventListener('click', function() {
+    console.log('stay coz you click');
+    clearTimeout(bombTimer);
+  })
+
+  //stop Inertval
+  function byePoo() {
+    console.log('👻');
+    console.log('bye bye');
+  }
+
+  const bombInterval = setInterval(byePoo, 2000);
+  setTimeout(function(){
+    bombInterval;
+    clearInterval(bombInterval);
+  }, 5000)
+
+</script>
+</html>
