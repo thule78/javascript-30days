@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Object 1 - Map</title>
+</head>
+<body>
+  <script>
+    const person1 = {
+      name: 'Thu',
+      age: 42,
+    };
+    const myMap = new Map();
+    //.set()
+    myMap.set('name', 'wes');
+    myMap.set(100, 'This is a number');
+    myMap.set(person1, 'Thu is cool');
+    console.log(myMap);
+    //axemple of prize looking
+    const score = 200;
+    const prizes = new Map();
+    prizes.set(100, 'bear');
+    prizes.set(200, 'duck');
+    prizes.set(300, 'car');
+    console.log(`you win a ${prizes.get(score)}`);
+
+    //select that ul
+    const ul = document.querySelector('.prizes');
+    for (const prize of prize) {
+      console.log(prize[0], prize[1]);
+    }
+
+    //.has()
+    //.delete()
+  </script>
+
+</body>
+</html>
