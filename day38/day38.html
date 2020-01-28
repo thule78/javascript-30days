@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>array</title>
+</head>
+<body>
+  <script>
+    const names = ['wes', 'kait', 'thu','wes']
+
+    console.log(names[0]);
+    console.log(names.length);
+    // asset to the last item in array
+    console.log(names[names.length - 1]);
+    //mutation method - DO CHANGE THE ORIGINAL DATA
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    //const numbers.Backwards = numbers.reverse();
+    // anytime want to use a mutation method and NOT mutate the original, make a copy of original
+    // const numbersReverse = [...numbers].reverse()
+    // console.log(numbersReverse);
+    // console.log(numbers);
+    //immutable - DO NOT CHANGE THE ORIGINAL DATA
+    // const pizzaSlice = numbers.slice(2, 4);
+    // console.log(pizzaSlice);
+    // console.log(numbers);
+
+    // add new item to original array
+    names.push('lux');
+    //add new item keep the original array
+    //add item in the end
+    const name2 = [...names, 'lux'];
+    // add item in the front
+    const name3 = ['poop',...names];
+    // add item in middle of array
+    const name4 = [
+    ...names.slice(0, 2),
+    'Scott',
+    ...names.slice(2)
+    ]
+    console.log(name4);
+    // delete item
+    const name5 = [
+    ...names.slice(0,2),
+    ...names.slice(3)
+    ]
+
+    console.log(name5);
+
+    const comments = [
+    {text: 'Love', id : 123},
+    {text: 'You are rock', id : 223},
+    {text: 'Cool Beans', id : 153},
+    {text: 'Neato', id : 125},
+    {text: 'good name', id : 353},
+    {text: 'Uhmm', id : 453},
+    {text: 'so good', id : 365},
+    ];
+
+    function deleteComment(id, comments){
+      // first find the index of the item in the array
+      const commentIndex = comments.findIndex(comment => comment.id === id);
+
+      // make a new array without that item in it
+      return [
+      ...comments.slice(0, commentIndex),
+      ...comments.slice(commentIndex + 1),
+      ];
+      //return our new array
+    }
+
+  </script>
+</body>
+</html>
