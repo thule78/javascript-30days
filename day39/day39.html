@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array | Instance Method</title>
+</head>
+<body>
+
+  <script>
+    const foodString = 'hot dogs, burgers, corn, sausages'
+    // transfer string to array
+    const foodArray = foodString.split(',');
+    console.log(foodArray);
+    //take laste item
+    const foodPop = foodArray.pop();
+    console.log(foodPop);
+    //add it back with push()
+    const foodPush = foodArray.push(foodPop);
+    console.log(foodPush);
+    // take the first item
+    const foodShift = foodArray.shift();
+    console.log(foodShift);
+  </script>
+</body>
+</html>
