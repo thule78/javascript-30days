@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>loop</title>
+</head>
+<body>
+
+  <script>
+    const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
+
+    /*
+    Looping Methods
+    */
+
+    function logTopping(topping, index, originalArray) {
+      console.log(toppings, index, originalArray);
+      const nextTopping = originalArray[index + 1];
+      const preTopping = originalArray[index - 1];
+      // log the topping
+      console.log(topping);
+      //log the previous topping if there is one
+      preTopping ? console.log(preTopping  + "🥞") : null ;
+      //log the next topping if there is one
+
+      nextTopping ? console.log(nextTopping + "🍕") : null ;
+      //if this is the last item in the array, then say good bye
+      index === originalArray.length - 1 ? console.log('👌🏻') : console.log('next topping please ?');
+    }
+
+    toppings.forEach(logTopping);
+  </script>
+
+</body>
+</html>
