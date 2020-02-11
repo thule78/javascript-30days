@@ -5,6 +5,12 @@
   <title>loop</title>
 </head>
 <body>
+  <div class="warpper">
+    <div class="frame">
+      <h3>Emoji explain how Map, Filter and Reduce in works in Javascript</h3>
+      <img src="map-filter-reduce.png" alt="explain map filter and reduce">
+    </div>
+  </div>
 
   <script>
        const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
@@ -210,6 +216,24 @@
   const studentByName = students.find(findByProp('first_name', 'Lorry'));
   console.log(studentByName);
 
+  // reduce
+  console.clear();
+  // example inventory reducer
+  function inventoryReducer(totals, item) {
+    console.log(`Looping over ${item.type}`);
+
+    //check if total[item.type] exist? yes then increment type by 1, not exist then total[item.type] = 1 first then add 1.
+    totals[item.type] = totals[item.type] + 1 || 1;
+    //return the totals, so the next loop can use it
+    return totals ;
+  }
+
+  const inventoryCounts = inventory.reduce(inventoryReducer, {});
+  console.log(inventoryCounts);
+
+  //arrow function for reduce
+  const totalInventoryPrice = inventory.reduce((acc, item) => acc + item.price, 0)
+  console.log(totalInventoryPrice);
   </script>
 
 </body>
