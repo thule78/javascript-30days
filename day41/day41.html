@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loop Reduce | fun Loop work</title>
+</head>
+<body>
+
+  <script>
+    const text = `
+Skip to main content
+CSS-Tricks
+
+    Articles
+    Videos
+    Almanac
+    Snippets
+    Newsletter
+    Jobs
+    Guides
+
+Search for:
+Home / Articles /
+New Year, New Job? Let’s Make a Grid-Powered Resume!
+Avatar of Ali Churcher
+Author
+Ali Churcher
+9 Comments
+Join Conversation
+Last Updated
+Jan 3, 2020
+grid jobs print
+Ad for Mailchimp
+CSS-Tricks Star Logo You have users exploring your app! Now what? Send them event-triggered automations. That’s what.
+
+Learn Development at Frontend Masters
+
+Many popular resume designs are making the most of the available page space by laying sections out in a grid shape. Let’s use CSS Grid to create a layout that looks great when printed and at different screen sizes. That way, we can use the resume online and offline, which might come in handy during the new year!
+
+First, we will create a resume container, and our resume sections.
+
+<article class="resume">
+  <section class="name"></section>
+  <section class="photo"></section>
+  <section class="about"></section>
+  <section class="work"></section>
+  <section class="education"></section>
+  <section class="community"></section>
+  <section class="skills"></section>
+</article>
+
+To start using Grid, we add display: grid to our outer resume element. Next, we describe how things should be placed on the grid. In this case, we will specify two columns and four rows.
+
+We are using the CSS Grid’s fr unit to specify how many fractions on the available space to give. We will give the rows equal space (1fr each), and make the first column two times wider than the second (2fr).
+
+.resume {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+Next we will describe how these elements should be placed on the grid by using the grid-template-area property. First we need to define a named grid-area for each of our sections. You can use any name but here we will use the same name as our sections:
+
+.name {
+  grid-area : name;
+}
+
+.photo {
+  grid-area : photo;
+}
+
+/* define a grid-area for every section */
+
+Now comes the fun part, and one that makes changing the design a breeze. Place the grid areas in the grid-template-areas property how you want them to be laid out. For example, here we will add the name section at the top left of the the grid-template-area to place our name at the top left of the resume. Our work section has a lot of content so we add it twice, meaning that it will stretch over two of the grid cells.
+
+.resume {
+  grid-template-areas:
+    "name photo"
+    "work about"
+    "work education"
+    "community skills";
+}
+
+Here’s what we have so far:
+
+The CSS Grid specification provides many useful properties for sizing and laying things out on the grid and well as some shorthand properties. We are keeping things simple in this example by showing one possible method. Be sure to check out some of the great resources out there to learn how best to incorporate CSS Grid in your project.
+#
+Adjusting layout
+
+grid-template-areas make it very easy to change your layout. For example, if you think an employer will be more interested in your skills section than your education you can switch the names in grid-template-areas and they will swap places in your layout, with no other changes required.
+
+.resume {
+  grid-template-areas:
+    "name photo"
+    "work about"
+    "work skills"  /* skills now moved above education */
+    "community education";
+}
+
+We can achieve a popular resume design where the thin column is on the left with minimal CSS changes. That’s one of the nice things about grid: We can rearrange the named grid areas to shift things around while leaving the source order exactly where it is!
+
+.resume {
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    "photo education"
+    "name work"
+    "about work"
+    "skills community";
+}
+
+#
+Dividing columns
+
+Perhaps you want to add personal references to the mix. We can add a third column to the grid template and slip those into the bottom row. Note that we also need to change the column units to equal fractions then update the template areas so that certain elements span two columns in order to keep our layout in place.
+
+.resume {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "name name photo"
+    "work work about"
+    "work work education"
+    "community references skills";
+}
+
+The gap between sections can be controlled with the grid-gap property.
+#
+Making it responsive
+
+For small screens, such as a mobile device, we can display the resume sections in a single full-width column.
+
+grid-template-columns: 1fr;
+grid-template-areas:
+  "photo"
+  "name"
+  "about"
+  "work"
+  "education"
+  "skills"
+  "community"
+  "references"
+}
+
+Then we can use a media query to change the layout for wider screens.
+
+@media (min-width: 1200px) {
+  .resume {
+    grid-template-areas:
+      "name photo"
+      "work about"
+      "work education"
+      "community skills";
+  }
+}
+
+Additional breakpoints can be added in between. For example, on medium screens like a tablet, we might want everything in a single column, but the personal and image sections to sit side-by-side at the top.
+
+@media (min-width: 900px) {
+  .resume {
+      grid-template-columns: 2fr 1fr;
+      grid-template-areas:
+        "name photo"
+        "about about"
+        "work work"
+        "education education"
+        "skills skills"
+        "community community"
+        "references references"
+  }
+}
+
+#
+Planning for single-page printing
+
+If you want your resume to print nicely to a single piece of physical paper, there are a few things to keep in mind. The hardest challenge is often cutting down the number of words so that it fits on one page.
+
+Avoid reducing the font size to squeeze more information, as it may become hard to read. One trick is to add a temporary size constraint to your resume element just while while you are developing.
+
+.resume {
+  /* for development only */
+  width : 210mm;
+  height: 297mm;
+  border: 1px solid black;
+}
+
+By making this A4 paper-sized border it will be clearer to see if the sizes are too small, or the content spills out of the border, indicating it would print onto a second page.
+
+You can provide printing CSS to hide things, like the date and page numbers, that the browser may insert.
+
+@media print {
+  /* remove any screen only styles, for example link underline */
+}
+
+@page {
+  padding: 0;
+  margin: 0cm;
+  size: A4 portrait;
+}
+
+One thing to note is that different browsers may render your resume with different fonts that can vary slightly in size. If you want a very precise printed resume, another option is to save it as a PDF and provide a download link on your site.
+#
+Browser support
+
+CSS Grid has good support in modern browsers.
+
+Internet Explorer (IE) supports an older version of the CSS Grid specification using prefixes. For example grid-template-columns is written as -ms-grid-columns. Running the code through an Autoprefixer can help with adding these prefixes, but manual changes and thorough testing will be required because in the old specification some properties behave differently and some do not exist. It’s worth checking out Daniel Tonon’s article on how Autoprefixer can be configured to make things work as well as possible.
+
+An alternative approach to autoprefixer is to provide a fallback, for example by using a float layout. Browsers that don't recognize CSS Grid properties will display using this fallback. Regardless of whether you need to support IE, a fallback is sensible for ensuring (potentially unknown) browsers that don't support CSS Grid still display your content.
+
+Even if you’re not ready to host an online resume, it is still fun to play around with CSS Grid, explore different layouts, generate a great looking PDF, and learn an awesome part of CSS at the same time.
+
+Happy job hunting!
+Wufoo: build online forms in minutes
+Chris Coyier Avatar Wufoo powers all our web forms here at CSS-Tricks, and has for over a decade!
+Wufoo Sponsorship Impression Tracker
+WooCommerce Ad
+Chris Coyier Avatar WooCommerce is the most popular choice for building an online store. It's what we always use!
+Ad for MongoDB Atlas
+CSS-Tricks Star Logo MongoDB Atlas is the only true global, multi-cloud database service. Try now!
+Ad for SendGrid
+CSS-Tricks Star Logo It just works. Reliable email infrastructure that you don’t have to build, scale, or maintain in-house.
+Ad for Cognito Forms
+CSS-Tricks Star Logo Create great-looking website forms that do real work. Intuitively add complex calculations, automations and integrations.
+Frontend Masters logo
+
+Frontend Masters logo
+Wanna learn modern CSS layout?
+
+Laying out designs on the web with CSS has gotten a lot more powerful in recent years. CSS grid and flexbox are incredibly powerful tools for that, and Frontend Masters has a complete learning course on them from Jen Kramer.
+MultiPurpose WP Theme
+MultiPurpose WP Theme Build your awesome website with Saasland Multipurpose WordPress theme. Grab now!
+The Divi Theme
+The Divi Theme Download the Ultimate WordPress Theme including our advanced Drag & Drop builder
+Comments
+
+    User Avatar
+    Bryn Wulff-John
+    Permalink to comment# January 1, 2020
+
+    Nice tutorial, really helpful. Thanks
+    Reply
+    User Avatar
+    Philip
+    Permalink to comment# January 1, 2020
+
+    Good read, thanks for posting it. How would you feel about using something like Bootstrap or W3CSS (I think that’s what its called)?
+
+    May 2020 be a great year for all!
+    Reply
+        User Avatar
+        HappyDeveloper
+        Permalink to comment# February 7, 2020
+
+        They are both super cool and useful to implement in various projects!
+
+Leave a Reply
+
+Comment
+Write Preview
+
+Name
+
+Email
+
+Website
+
+Save my name, email, and website in this browser for the next time I comment.
+
+Get the CSS-Tricks newsletter
+
+Notify me of follow-up comments by email.
+
+All comments are held for moderation. We'll publish all comments that are on topic, not rude, and adhere to our Code of Conduct. You'll even get little stars if you do an extra good job.
+
+You may write comments in Markdown. This is the best way to post any code, inline like <div>this</div> or multiline blocks within triple backtick fences  with double new lines before and after.
+
+Want to tell us something privately, like pointing out a typo or stuff like that Contact Us.
+We have a
+Code of Conduct.
+Be cool. Be helpful. The web is a big place. Have fun. High five.
+The Difference Between Explicit and Implicit Grids
+
+Grid Layout finally gives us the ability to define grids in CSS and place items into grid cells. This on its own is great, but the fact that we don't have to specify each track and we don't have to place every item manually makes the new module even better.…
+
+August 10, 2017
+Getting Started with CSS Grid
+
+Why is CSS Grid a big deal and why should we care Well, CSS Grid is the first real layout system for the web. It's designed for organizing content both into columns and rows and it finally gives developers almost God-like control of the screens before us. That means that…
+
+March 13, 2017
+Another Collection of Interesting Facts About CSS Grid
+Another Collection of Interesting Facts About CSS Grid
+
+Last year, I assembled A Collection of Interesting Facts about CSS Grid Layout after giving a workshop. This year, I worked on another workshop and I've learned some more exciting facts about the layout spec we all so love. Of course, I'm not going to keep my knowledge to myself.…
+
+April 13, 2018
+How do you stay up to date in this fast⁠-⁠moving industry
+
+A good start is to sign up for our weekly hand-written newsletter. We bring you the best articles and ideas from around the web, and what we think about them.
+Email Address
+Subscribe
+Facebook
+@CSSTricks
+Twitter
+@CSS
+YouTube
+@realcsstricks
+Instagram
+@real_css_tricks
+RSS
+Feed
+
+CSS-Tricks is created, written by, and maintained by Chris Coyier and a team of swell people. The tech stack for this site is fairly boring. That's a good thing! I've used WordPress since day one all the way up to v17, a decision I'm very happy with. I also leverage Jetpack for extra functionality and Local for local development.
+
+May or may not contain any actual "CSS" or "Tricks".
+Other Nav
+Contact
+About
+Guest Writing
+Jobs
+Advertise
+License
+Subscribe
+All Authors
+CodePen
+
+CodePen is a place to experiment, debug, and show off your HTML, CSS, and JavaScript creations.
+Flywheel
+
+CSS-Tricks is hosted by Flywheel, the best WordPress hosting in the business, with a local development tool to match.
+ShopTalk Show
+
+ShopTalk is a podcast all about front-end web design and development.
+CSS-Tricks Presents 📅 Upcoming Front-End Conferences
+CSS-Tricks Presents The Power of Serverless for Front-End Developers
+`;
+    function isValidChar(char) {
+      //select character that a-z A-Z 0-9
+      return char.match(/[a-z0-9]/i)
+    }
+
+    // lowcase all character
+    const lowChar = char => char.toLowerCase();
+    function counter(counts, char) {
+      counts[char] ? counts[char] = counts[char] + 1 : counts[char] = 1;
+      return counts;
+    }
+
+    const result = text
+    //split all words to an array of characters without space
+    .split('')
+    .filter(isValidChar) //filter a-z, 0-9, A-Z chars only
+    .map(lowChar)// all chars to lowerCase
+    .reduce(counter,{});
+
+    console.log(result);
+
+    // sort by number of char
+
+    function sortByValue(a, b) {
+      return a[1] - b[1];
+    }
+    const sorteRelult = Object
+      .entries(result)
+      .sort(sortByValue);
+
+    console.log(sorteRelult);
+
+  </script>
+</body>
+</html>
